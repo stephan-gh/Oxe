@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Oxe
+    Copyright (C) 2018 Minecrell (https://github.com/Minecrell)
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<resources>
+    <style name="ExoMediaButton.ResizeMode">
+        <item name="android:src">@drawable/ic_resize_mode</item>
+    </style>
+
+    <style name="ExoMediaButton.Track">
+        <item name="android:visibility">gone</item>
+    </style>
+    <style name="ExoMediaButton.Track.Video">
+        <item name="android:src">@drawable/ic_track_video</item>
+        <item name="android:contentDescription">@string/exo_track_selection_title_video</item>
+    </style>
+    <style name="ExoMediaButton.Track.Audio">
+        <item name="android:src">@drawable/ic_track_audio</item>
+        <item name="android:contentDescription">@string/exo_track_selection_title_audio</item>
+    </style>
+    <style name="ExoMediaButton.Track.Text">
+        <item name="android:src">@drawable/ic_track_text</item>
+        <item name="android:contentDescription">@string/exo_track_selection_title_text</item>
+    </style>
+</resources>
