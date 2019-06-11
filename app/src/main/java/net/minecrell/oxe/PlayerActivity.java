@@ -19,11 +19,9 @@
 package net.minecrell.oxe;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -32,8 +30,8 @@ import com.google.android.exoplayer2.C.ContentType;
 import com.google.android.exoplayer2.ExoPlayerFactory;
 import com.google.android.exoplayer2.Player;
 import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
 import com.google.android.exoplayer2.source.MediaSource;
+import com.google.android.exoplayer2.source.ProgressiveMediaSource;
 import com.google.android.exoplayer2.source.TrackGroupArray;
 import com.google.android.exoplayer2.source.dash.DashMediaSource;
 import com.google.android.exoplayer2.source.hls.HlsMediaSource;
@@ -44,7 +42,7 @@ import com.google.android.exoplayer2.trackselection.TrackSelectionArray;
 import com.google.android.exoplayer2.ui.AspectRatioFrameLayout;
 import com.google.android.exoplayer2.ui.PlayerControlView;
 import com.google.android.exoplayer2.ui.PlayerView;
-import com.google.android.exoplayer2.ui.TrackSelectionView;
+import com.google.android.exoplayer2.ui.TrackSelectionDialogBuilder;
 import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
@@ -208,7 +206,7 @@ public class PlayerActivity extends Activity implements View.OnSystemUiVisibilit
                 return new HlsMediaSource.Factory(this.dataSourceFactory)
                         .createMediaSource(uri);
             case C.TYPE_OTHER:
-                return new ExtractorMediaSource.Factory(this.dataSourceFactory)
+                return new ProgressiveMediaSource.Factory(this.dataSourceFactory)
                         .createMediaSource(uri);
             default: {
                 throw new IllegalStateException("Unsupported type: " + type);
@@ -270,11 +268,11 @@ public class PlayerActivity extends Activity implements View.OnSystemUiVisibilit
             return;
         }
 
-        Pair<AlertDialog, TrackSelectionView> dialogPair = TrackSelectionView.getDialog(
-                this, button.getContentDescription(), this.trackSelector, (int) button.getTag());
-        dialogPair.second.setShowDisableOption(true);
-        dialogPair.second.setAllowAdaptiveSelections(true);
-        dialogPair.first.show();
+        new TrackSelectionDialogBuilder(this, button.getContentDescription(),
+                this.trackSelector, (int) button.getTag())
+                .setShowDisableOption(true)
+                .setAllowAdaptiveSelections(true)
+                .build().show();
     }
 
     @Override

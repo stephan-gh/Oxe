@@ -34,7 +34,7 @@ android {
 }
 
 dependencies {
-    implementation("com.google.android.exoplayer:exoplayer:2.9.0")
+    implementation("com.google.android.exoplayer:exoplayer:2.10.1")
 }
 
 license {
